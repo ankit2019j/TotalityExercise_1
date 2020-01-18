@@ -34,7 +34,6 @@ public class Adapter extends ArrayAdapter {
     private RequestQueue requestQueue;
     JsonObjectRequest jsArrayRequest;
     private static final String URL_BASE = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json";
-    private static final String TAG = "HeroAdapter";
     List<fact_sets> items;
 
     public Adapter(@NonNull Context context) {
@@ -56,7 +55,7 @@ public class Adapter extends ArrayAdapter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error  JSON: " + error.getMessage());
+                        Log.d("error1", "Error  JSON: " + error.getMessage());
                     }
                 }
         );
@@ -84,7 +83,7 @@ public class Adapter extends ArrayAdapter {
 
         TextView textoTitle = (TextView) listItemView.findViewById(R.id.title);
         TextView textoDescription = (TextView) listItemView.findViewById(R.id.description);
-        final ImageView imageHero = (ImageView) listItemView.findViewById(R.id.image);
+        final ImageView imageH = (ImageView) listItemView.findViewById(R.id.image);
 
         textoTitle.setText(item.getTitle());
         textoDescription.setText(item.getDescription());
@@ -94,14 +93,14 @@ public class Adapter extends ArrayAdapter {
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
-                        imageHero.setImageBitmap(response);
+                        imageH.setImageBitmap(response);
                     }
                 }, 0, 0, null,
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        imageHero.setImageResource(R.drawable.ic_launcher_background);
-                        Log.e(TAG, "Image not loaded"+ error.getMessage());
+                        imageH.setImageResource(R.drawable.ic_launcher_background);
+                        Log.e("error2", "Image not loaded"+ error.getMessage());
                     }
                 }
         );
@@ -128,7 +127,7 @@ public class Adapter extends ArrayAdapter {
 
                     facts.add(factss);
                 }catch (JSONException e){
-                    Log.e(TAG, "Error in parsing: "+ e.getMessage());
+                    Log.e("error3", "Error in parsing: "+ e.getMessage());
                 }
             }
         } catch (JSONException e) {
