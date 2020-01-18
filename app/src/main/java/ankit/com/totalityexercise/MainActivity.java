@@ -1,8 +1,10 @@
 package ankit.com.totalityexercise;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,14 +26,27 @@ import java.util.Iterator;
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter adapter;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button=findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listView = (ListView) findViewById(R.id.listview);
+                adapter = new Adapter(getApplicationContext());
+                listView.setAdapter(adapter);
+            }
+        });
 
         listView = (ListView) findViewById(R.id.listview);
         adapter = new Adapter(getApplicationContext());
         listView.setAdapter(adapter);
     }
+
+
 }
