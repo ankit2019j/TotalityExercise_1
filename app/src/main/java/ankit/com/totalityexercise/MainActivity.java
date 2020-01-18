@@ -32,20 +32,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         button=findViewById(R.id.button);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {    //Button to Refresh the layout
             @Override
             public void onClick(View view) {
-                listView = (ListView) findViewById(R.id.listview);
+                listView = findViewById(R.id.listview);
                 adapter = new Adapter(getApplicationContext());
                 listView.setAdapter(adapter);
             }
         });
 
-        listView = (ListView) findViewById(R.id.listview);
-        adapter = new Adapter(getApplicationContext());
-        listView.setAdapter(adapter);
+        listView = findViewById(R.id.listview);
+        adapter = new Adapter(getApplicationContext());  //setting values
+        listView.setAdapter(adapter);   //populating listview
     }
 
 
