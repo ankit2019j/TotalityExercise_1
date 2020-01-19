@@ -1,5 +1,7 @@
 package ankit.com.totalityexercise;
 
+import com.google.gson.annotations.SerializedName;
+
 public class fact_sets {
 
         private String title;
@@ -14,6 +16,8 @@ public class fact_sets {
             this.image = image;
         }
 
+
+        @SerializedName("title")
         public String getTitle() {
             return title;
         }
@@ -22,6 +26,7 @@ public class fact_sets {
             this.title = title;
         }
 
+        @SerializedName("description")
         public String getDescription() {
             return description;
         }
@@ -30,6 +35,7 @@ public class fact_sets {
             this.description = description;
         }
 
+        @SerializedName("imageHref")
         public String getImage() {
             return image;
         }

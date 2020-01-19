@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +65,14 @@ public class Adapter extends ArrayAdapter {
 
     @Override
     public int getCount() {
-        return items != null ? items.size() : 0;
+
+        if(items==null){
+            return 0;
+        }
+        else
+        {
+           return items.size();
+        }
     }
 
     @NonNull
@@ -79,7 +87,7 @@ public class Adapter extends ArrayAdapter {
                 false
         ): convertView;
 
-        fact_sets item = items.get(position);
+        final fact_sets item = items.get(position);
 
         TextView textoTitle = (TextView) listItemView.findViewById(R.id.title);
         TextView textoDescription = (TextView) listItemView.findViewById(R.id.description);
@@ -88,12 +96,17 @@ public class Adapter extends ArrayAdapter {
         textoTitle.setText(item.getTitle());
         textoDescription.setText(item.getDescription());
 
+
         ImageRequest request = new ImageRequest(
                 item.getImage(),
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
+//                        Log.e("imgURLL", "onResponse: "+response);
+//                       response.toString();
                         imageH.setImageBitmap(response);
+                        Log.e("imgURLL", "onResponse: "+response.toString());
+
                     }
                 }, 0, 0, null,
                 new Response.ErrorListener() {
@@ -124,6 +137,7 @@ public class Adapter extends ArrayAdapter {
                             object.getString("description"),
                             object.getString("imageHref")
                     );
+                    Log.d("imgtaggg", "parseJson: "+factss.getImage());
 
                     facts.add(factss);
                 }catch (JSONException e){
